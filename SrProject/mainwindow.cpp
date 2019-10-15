@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
+	ui->gridLayout->setAlignment(Qt::AlignCenter);
 }
 
 MainWindow::~MainWindow()
@@ -109,4 +110,13 @@ void MainWindow::on_actionOnCompileFinished_triggered()
 	QProcess compile;
 
 	compile.execute("a.exe");
+}
+
+void MainWindow::on_actionPython_Compile_triggered()
+{
+	QProcess compile;
+
+	compile.startDetached("powershell", QStringList() << "py Code.py | Out-File ./output");
+	compile.kill();
+	on_actionOnCompileFinished_triggered();
 }

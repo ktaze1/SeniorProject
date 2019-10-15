@@ -37,6 +37,7 @@ public:
     QAction *actionUndo;
     QAction *actionCompile_Code;
     QAction *actionOnCompileFinished;
+    QAction *actionPython_Compile;
     QWidget *centralWidget;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
@@ -81,6 +82,8 @@ public:
         actionCompile_Code->setObjectName(QString::fromUtf8("actionCompile_Code"));
         actionOnCompileFinished = new QAction(MainWindow);
         actionOnCompileFinished->setObjectName(QString::fromUtf8("actionOnCompileFinished"));
+        actionPython_Compile = new QAction(MainWindow);
+        actionPython_Compile->setObjectName(QString::fromUtf8("actionPython_Compile"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -154,6 +157,7 @@ public:
         menuEdit->addAction(actionPaste);
         menuEdit->addAction(actionUndo);
         menuCompile->addAction(actionCompile_Code);
+        menuCompile->addAction(actionPython_Compile);
 
         retranslateUi(MainWindow);
 
@@ -171,11 +175,12 @@ public:
         actionCopy->setText(QCoreApplication::translate("MainWindow", "Copy", nullptr));
         actionPaste->setText(QCoreApplication::translate("MainWindow", "Paste", nullptr));
         actionUndo->setText(QCoreApplication::translate("MainWindow", "Undo", nullptr));
-        actionCompile_Code->setText(QCoreApplication::translate("MainWindow", "Compile Code", nullptr));
+        actionCompile_Code->setText(QCoreApplication::translate("MainWindow", "C++ Compile", nullptr));
         actionOnCompileFinished->setText(QCoreApplication::translate("MainWindow", "OnCompileFinished", nullptr));
 #if QT_CONFIG(tooltip)
         actionOnCompileFinished->setToolTip(QCoreApplication::translate("MainWindow", "On Compile Finished", nullptr));
 #endif // QT_CONFIG(tooltip)
+        actionPython_Compile->setText(QCoreApplication::translate("MainWindow", "Python Compile", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuCompile->setTitle(QCoreApplication::translate("MainWindow", "Compile", nullptr));

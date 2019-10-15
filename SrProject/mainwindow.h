@@ -43,6 +43,8 @@ private slots:
 
 	void on_actionOnCompileFinished_triggered();
 
+	void on_actionPython_Compile_triggered();
+
 private:
 	Ui::MainWindow *ui;
 	QString currentFile = "";

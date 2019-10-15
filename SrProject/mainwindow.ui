@@ -105,6 +105,7 @@
      <string>Compile</string>
     </property>
     <addaction name="actionCompile_Code"/>
+    <addaction name="actionPython_Compile"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -161,7 +162,7 @@
   </action>
   <action name="actionCompile_Code">
    <property name="text">
-    <string>Compile Code</string>
+    <string>C++ Compile</string>
    </property>
   </action>
   <action name="actionOnCompileFinished">
@@ -170,6 +171,11 @@
    </property>
    <property name="toolTip">
     <string>On Compile Finished</string>
+   </property>
+  </action>
+  <action name="actionPython_Compile">
+   <property name="text">
+    <string>Python Compile</string>
    </property>
   </action>
  </widget>
