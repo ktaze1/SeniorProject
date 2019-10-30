@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui network widgets
 
 TARGET = SrProject
 TEMPLATE = app
@@ -25,11 +23,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        client.cpp \
+        connection.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        peermanager.cpp \
+        server.cpp
 
 HEADERS += \
-        mainwindow.h
+        client.h \
+        connection.h \
+        mainwindow.h \
+        peermanager.h \
+        server.h
 
 FORMS += \
         mainwindow.ui

@@ -1,18 +1,106 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QtWidgets>
+
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
 	ui->gridLayout->setAlignment(Qt::AlignCenter);
+	ui->messageLine->setFocusPolicy(Qt::StrongFocus);
+	ui->chatMessages->setReadOnly(true);
+	ui->chatMessages->setFocusPolicy(Qt::NoFocus);
+	ui->onlineUsers->setFocusPolicy(Qt::NoFocus);
+
+	connect(ui->chatMessages, SIGNAL(returnPressed()), this, SLOT(returnPressed()));
+	connect(ui->messageLine, SIGNAL(returnPressed()), this, SLOT(returnPressed()));
+	connect(&client, SIGNAL(newMessage(QString,QString)),
+		  this, SLOT(appendMessage(QString,QString)));
+	connect(&client, SIGNAL(newParticipant(QString)),
+		  this, SLOT(newParticipant(QString)));
+	connect(&client, SIGNAL(participantLeft(QString)),
+		  this, SLOT(participantLeft(QString)));
+
+	myNickName = client.nickName();
+	newParticipant(myNickName);
+	tableFormat.setBorder(0);
 }
 
 MainWindow::~MainWindow()
 {
 	delete ui;
 }
+
+
+void MainWindow::appendMessage(const QString &from, const QString &message)
+{
+	if (from.isEmpty() || message.isEmpty())
+		return;
+
+	QTextCursor cursor(ui->chatMessages->textCursor());
+	cursor.movePosition(QTextCursor::End);
+	QTextTable *table = cursor.insertTable(1, 2, tableFormat);
+	table->cellAt(0, 0).firstCursorPosition().insertText('<' + from + "> ");
+	table->cellAt(0, 1).firstCursorPosition().insertText(message);
+	QScrollBar *bar = ui->chatMessages->verticalScrollBar();
+	bar->setValue(bar->maximum());
+
+}
+
+
+
+
+void MainWindow::returnPressed()
+{
+	QString text = ui->messageLine->text();
+	if (text.isEmpty())
+		return;
+
+	if (text.startsWith(QChar('/'))) {
+		QColor color = ui->chatMessages->textColor();
+		ui->chatMessages->setTextColor(Qt::red);
+		ui->chatMessages->append(tr("! Unknown command: %1")
+						 .arg(text.left(text.indexOf(' '))));
+		ui->chatMessages->setTextColor(color);
+	} else {
+		client.sendMessage(text);
+		appendMessage(myNickName, text);
+	}
+
+	ui->messageLine->clear();
+}
+
+void MainWindow::newParticipant(const QString &nick)
+{
+	if (nick.isEmpty())
+		return;
+
+	QColor color = ui->chatMessages->textColor();
+	ui->chatMessages->setTextColor(Qt::gray);
+	ui->chatMessages->append(tr("* %1 has joined").arg(nick));
+	ui->chatMessages->setTextColor(color);
+	ui->onlineUsers->addItem(nick);
+}
+
+void MainWindow::participantLeft(const QString &nick)
+{
+	if (nick.isEmpty())
+		return;
+
+	QList<QListWidgetItem *> items = ui->onlineUsers->findItems(nick,
+														   Qt::MatchExactly);
+	if (items.isEmpty())
+		return;
+
+	delete items.at(0);
+	QColor color = ui->chatMessages->textColor();
+	ui->chatMessages->setTextColor(Qt::gray);
+	ui->chatMessages->append(tr("* %1 has left").arg(nick));
+	ui->chatMessages->setTextColor(color);
+}
+
 
 void MainWindow::on_actionNew_File_triggered()
 {
@@ -120,3 +208,4 @@ void MainWindow::on_actionPython_Compile_triggered()
 	compile.kill();
 	on_actionOnCompileFinished_triggered();
 }
+

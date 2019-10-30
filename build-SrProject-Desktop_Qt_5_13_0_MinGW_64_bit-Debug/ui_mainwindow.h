@@ -13,13 +13,17 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -39,11 +43,16 @@ public:
     QAction *actionOnCompileFinished;
     QAction *actionPython_Compile;
     QWidget *centralWidget;
-    QWidget *gridLayoutWidget;
+    QHBoxLayout *horizontalLayout;
     QGridLayout *gridLayout;
-    QVBoxLayout *verticalLayout_3;
+    QTextEdit *chatMessages;
+    QListWidget *onlineUsers;
+    QSpacerItem *horizontalSpacer;
+    QGridLayout *gridLayout_2;
     QTextEdit *textEdit;
     QTextEdit *textEdit_3;
+    QLabel *label;
+    QLineEdit *messageLine;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -56,7 +65,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setEnabled(true);
-        MainWindow->resize(1034, 702);
+        MainWindow->resize(1179, 636);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -91,28 +100,48 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
         centralWidget->setSizePolicy(sizePolicy1);
-        gridLayoutWidget = new QWidget(centralWidget);
-        gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(160, 60, 751, 511));
-        gridLayout = new QGridLayout(gridLayoutWidget);
+        horizontalLayout = new QHBoxLayout(centralWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        textEdit = new QTextEdit(gridLayoutWidget);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        chatMessages = new QTextEdit(centralWidget);
+        chatMessages->setObjectName(QString::fromUtf8("chatMessages"));
+        sizePolicy1.setHeightForWidth(chatMessages->sizePolicy().hasHeightForWidth());
+        chatMessages->setSizePolicy(sizePolicy1);
+        chatMessages->setMinimumSize(QSize(230, 0));
+
+        gridLayout->addWidget(chatMessages, 0, 4, 1, 1);
+
+        onlineUsers = new QListWidget(centralWidget);
+        onlineUsers->setObjectName(QString::fromUtf8("onlineUsers"));
         QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
-        textEdit->setSizePolicy(sizePolicy2);
+        sizePolicy2.setHeightForWidth(onlineUsers->sizePolicy().hasHeightForWidth());
+        onlineUsers->setSizePolicy(sizePolicy2);
+        onlineUsers->setMinimumSize(QSize(20, 0));
 
-        verticalLayout_3->addWidget(textEdit);
+        gridLayout->addWidget(onlineUsers, 0, 5, 1, 1);
 
-        textEdit_3 = new QTextEdit(gridLayoutWidget);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 0, 2, 1, 1);
+
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        textEdit = new QTextEdit(centralWidget);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
+        textEdit->setSizePolicy(sizePolicy1);
+        textEdit->setMinimumSize(QSize(750, 0));
+
+        gridLayout_2->addWidget(textEdit, 0, 0, 1, 1);
+
+        textEdit_3 = new QTextEdit(centralWidget);
         textEdit_3->setObjectName(QString::fromUtf8("textEdit_3"));
         QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Minimum);
         sizePolicy3.setHorizontalStretch(0);
@@ -121,15 +150,28 @@ public:
         textEdit_3->setSizePolicy(sizePolicy3);
         textEdit_3->setMinimumSize(QSize(0, 100));
 
-        verticalLayout_3->addWidget(textEdit_3);
+        gridLayout_2->addWidget(textEdit_3, 1, 0, 1, 1);
 
 
-        gridLayout->addLayout(verticalLayout_3, 0, 0, 1, 1);
+        gridLayout->addLayout(gridLayout_2, 0, 0, 1, 1);
+
+        label = new QLabel(centralWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        gridLayout->addWidget(label, 1, 3, 1, 1);
+
+        messageLine = new QLineEdit(centralWidget);
+        messageLine->setObjectName(QString::fromUtf8("messageLine"));
+
+        gridLayout->addWidget(messageLine, 1, 4, 1, 2);
+
+
+        horizontalLayout->addLayout(gridLayout);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1034, 21));
+        menuBar->setGeometry(QRect(0, 0, 1179, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuEdit = new QMenu(menuBar);
@@ -181,6 +223,7 @@ public:
         actionOnCompileFinished->setToolTip(QCoreApplication::translate("MainWindow", "On Compile Finished", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionPython_Compile->setText(QCoreApplication::translate("MainWindow", "Python Compile", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Message:", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuCompile->setTitle(QCoreApplication::translate("MainWindow", "Compile", nullptr));
