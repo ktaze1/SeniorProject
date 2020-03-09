@@ -21,6 +21,7 @@ public:
 	void sendMessage(const QString &message);
 	QString nickName() const;
 	bool hasConnection(const QHostAddress &senderIp, int senderPort = -1) const;
+    Server server;
 
 signals:
 	void newMessage(const QString &from, const QString &message);
@@ -36,8 +37,7 @@ private slots:
 private:
 	void removeConnection(Connection *connection);
 
-	PeerManager *peerManager;
-	Server server;
+    PeerManager *peerManager;
 	QMultiHash<QHostAddress, Connection *> peers;
 };
 

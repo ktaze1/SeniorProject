@@ -96,7 +96,7 @@ void PeerManager::readBroadcastDatagram()
 										 &senderIp, &senderPort) == -1)
 			continue;
 
-		int senderServerPort;
+		qint64 senderServerPort;
 		{
 			// decode the datagram
 			QCborStreamReader reader(datagram);

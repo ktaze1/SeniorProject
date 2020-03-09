@@ -7,10 +7,19 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QProcess>
+#include <QListWidgetItem>
 #include <QTextTableFormat>
 #include <QDebug>
+#include <QTimer>
+
+#include "collabeditor.h"
+
+
+#include "highlighter.h"
 
 #include "client.h"
+#include "udpreceiver.h"
+#include "udpsender.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,8 +30,9 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget *parent = nullptr);
-	~MainWindow();
+    explicit MainWindow(QWidget *parent = nullptr);
+   // inline static int recepientPort;
+    ~MainWindow();
 
 
 public slots:
@@ -55,15 +65,34 @@ private slots:
 
 	void newParticipant(const QString &nick);
 
-	void participantLeft(const QString &nick);
+    void participantLeft(const QString &nick);
+
+	void on_actionCommit_triggered();
+
+	void on_actionPush_triggered();
+
+    void on_onlineUsers_itemClicked(QListWidgetItem *item);
+
+    void setupCodeSpace();
+
+    void on_OpenCollabEditor_clicked();
+
+    void on_CallButton_clicked();
 
 private:
 	Ui::MainWindow *ui;
 	QString currentFile = "";
+	QString currentUser = "";
+	QTimer *timer;
 
-	Client client;
+
+    Highlighter *highlighter;
 	QString myNickName;
-	QTextTableFormat tableFormat;
+    QTextTableFormat tableFormat;
+    CollabEditor *CollabEditor;
+    udpSender *udpSender;
+    udpReceiver *udpReceiver;
+    Client client;
 };
 
 #endif // MAINWINDOW_H

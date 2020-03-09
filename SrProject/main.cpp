@@ -1,8 +1,11 @@
-#include "mainwindow.h"
+//#include "mainwindow.h"
 #include <QNetworkConfigurationManager>
 #include <QSettings>
 #include <QNetworkSession>
 #include <QApplication>
+#include <QtDebug>
+#include "login.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -44,9 +47,17 @@ int main(int argc, char *argv[])
 			settings.endGroup();
 		}
 	}
+
+	Login login;
+	login.show();
+
+	/*
 	MainWindow w;
 	w.setWindowTitle("Code Editor");
-	w.show();
+	w.show();*/
+
+
+
 
 	return a.exec();
 }

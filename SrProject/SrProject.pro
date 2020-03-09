@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network widgets
+QT       += core gui network widgets sql multimedia
 
 TARGET = SrProject
 TEMPLATE = app
@@ -20,24 +20,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-CONFIG += c++11
+CONFIG += c++17
 
 SOURCES += \
         client.cpp \
+        collabeditor.cpp \
         connection.cpp \
+        highlighter.cpp \
+        login.cpp \
         main.cpp \
         mainwindow.cpp \
         peermanager.cpp \
-        server.cpp
+        server.cpp \
+        udpreceiver.cpp \
+        udpsender.cpp
 
 HEADERS += \
         client.h \
+        collabeditor.h \
         connection.h \
+        highlighter.h \
+        login.h \
         mainwindow.h \
         peermanager.h \
-        server.h
+        server.h \
+        udpreceiver.h \
+        udpsender.h
 
 FORMS += \
+        collabeditor.ui \
+        login.ui \
         mainwindow.ui
 
 # Default rules for deployment.

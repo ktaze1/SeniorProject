@@ -88,7 +88,7 @@ private:
 	QUdpSocket broadcastSocket;
 	QTimer broadcastTimer;
 	QString username;
-	int serverPort;
+	qint32 serverPort;
 };
 
 #endif

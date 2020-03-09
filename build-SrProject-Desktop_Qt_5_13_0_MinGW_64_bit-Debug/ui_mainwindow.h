@@ -42,21 +42,26 @@ public:
     QAction *actionCompile_Code;
     QAction *actionOnCompileFinished;
     QAction *actionPython_Compile;
+    QAction *actionupdateText;
+    QAction *actionCommit;
+    QAction *actionPush;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QGridLayout *gridLayout;
-    QTextEdit *chatMessages;
-    QListWidget *onlineUsers;
-    QSpacerItem *horizontalSpacer;
-    QGridLayout *gridLayout_2;
-    QTextEdit *textEdit;
-    QTextEdit *textEdit_3;
     QLabel *label;
+    QSpacerItem *horizontalSpacer;
     QLineEdit *messageLine;
+    QListWidget *onlineUsers;
+    QTextEdit *chatMessages;
+    QGridLayout *gridLayout_2;
+    QTextEdit *codeSpace;
+    QTextEdit *textEdit_3;
+    QLineEdit *lineEdit;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
     QMenu *menuCompile;
+    QMenu *menuG_thub;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -65,8 +70,8 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setEnabled(true);
-        MainWindow->resize(1179, 636);
-        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        MainWindow->resize(1580, 650);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
@@ -93,13 +98,16 @@ public:
         actionOnCompileFinished->setObjectName(QString::fromUtf8("actionOnCompileFinished"));
         actionPython_Compile = new QAction(MainWindow);
         actionPython_Compile->setObjectName(QString::fromUtf8("actionPython_Compile"));
+        actionupdateText = new QAction(MainWindow);
+        actionupdateText->setObjectName(QString::fromUtf8("actionupdateText"));
+        actionCommit = new QAction(MainWindow);
+        actionCommit->setObjectName(QString::fromUtf8("actionCommit"));
+        actionPush = new QAction(MainWindow);
+        actionPush->setObjectName(QString::fromUtf8("actionPush"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
-        centralWidget->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy);
         horizontalLayout = new QHBoxLayout(centralWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -107,39 +115,55 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        chatMessages = new QTextEdit(centralWidget);
-        chatMessages->setObjectName(QString::fromUtf8("chatMessages"));
-        sizePolicy1.setHeightForWidth(chatMessages->sizePolicy().hasHeightForWidth());
-        chatMessages->setSizePolicy(sizePolicy1);
-        chatMessages->setMinimumSize(QSize(230, 0));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy1);
+        label->setMinimumSize(QSize(0, 0));
 
-        gridLayout->addWidget(chatMessages, 0, 4, 1, 1);
+        gridLayout->addWidget(label, 1, 3, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 0, 1, 1, 1);
+
+        messageLine = new QLineEdit(centralWidget);
+        messageLine->setObjectName(QString::fromUtf8("messageLine"));
+
+        gridLayout->addWidget(messageLine, 1, 4, 1, 2);
 
         onlineUsers = new QListWidget(centralWidget);
         onlineUsers->setObjectName(QString::fromUtf8("onlineUsers"));
-        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(onlineUsers->sizePolicy().hasHeightForWidth());
         onlineUsers->setSizePolicy(sizePolicy2);
-        onlineUsers->setMinimumSize(QSize(20, 0));
+        onlineUsers->setMinimumSize(QSize(140, 0));
 
-        gridLayout->addWidget(onlineUsers, 0, 5, 1, 1);
+        gridLayout->addWidget(onlineUsers, 0, 5, 1, 1, Qt::AlignRight);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        chatMessages = new QTextEdit(centralWidget);
+        chatMessages->setObjectName(QString::fromUtf8("chatMessages"));
+        sizePolicy.setHeightForWidth(chatMessages->sizePolicy().hasHeightForWidth());
+        chatMessages->setSizePolicy(sizePolicy);
+        chatMessages->setMinimumSize(QSize(400, 0));
 
-        gridLayout->addItem(horizontalSpacer, 0, 2, 1, 1);
+        gridLayout->addWidget(chatMessages, 0, 3, 1, 2);
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setSpacing(6);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        textEdit = new QTextEdit(centralWidget);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
-        textEdit->setSizePolicy(sizePolicy1);
-        textEdit->setMinimumSize(QSize(750, 0));
+        codeSpace = new QTextEdit(centralWidget);
+        codeSpace->setObjectName(QString::fromUtf8("codeSpace"));
+        sizePolicy.setHeightForWidth(codeSpace->sizePolicy().hasHeightForWidth());
+        codeSpace->setSizePolicy(sizePolicy);
+        codeSpace->setMinimumSize(QSize(1000, 0));
 
-        gridLayout_2->addWidget(textEdit, 0, 0, 1, 1);
+        gridLayout_2->addWidget(codeSpace, 0, 0, 1, 1);
 
         textEdit_3 = new QTextEdit(centralWidget);
         textEdit_3->setObjectName(QString::fromUtf8("textEdit_3"));
@@ -155,15 +179,10 @@ public:
 
         gridLayout->addLayout(gridLayout_2, 0, 0, 1, 1);
 
-        label = new QLabel(centralWidget);
-        label->setObjectName(QString::fromUtf8("label"));
+        lineEdit = new QLineEdit(centralWidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
 
-        gridLayout->addWidget(label, 1, 3, 1, 1);
-
-        messageLine = new QLineEdit(centralWidget);
-        messageLine->setObjectName(QString::fromUtf8("messageLine"));
-
-        gridLayout->addWidget(messageLine, 1, 4, 1, 2);
+        gridLayout->addWidget(lineEdit, 1, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout);
@@ -171,13 +190,15 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1179, 21));
+        menuBar->setGeometry(QRect(0, 0, 1580, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         menuCompile = new QMenu(menuBar);
         menuCompile->setObjectName(QString::fromUtf8("menuCompile"));
+        menuG_thub = new QMenu(menuBar);
+        menuG_thub->setObjectName(QString::fromUtf8("menuG_thub"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -189,6 +210,7 @@ public:
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
         menuBar->addAction(menuCompile->menuAction());
+        menuBar->addAction(menuG_thub->menuAction());
         menuFile->addAction(actionNew_File);
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionSave);
@@ -200,6 +222,8 @@ public:
         menuEdit->addAction(actionUndo);
         menuCompile->addAction(actionCompile_Code);
         menuCompile->addAction(actionPython_Compile);
+        menuG_thub->addAction(actionCommit);
+        menuG_thub->addAction(actionPush);
 
         retranslateUi(MainWindow);
 
@@ -223,10 +247,14 @@ public:
         actionOnCompileFinished->setToolTip(QCoreApplication::translate("MainWindow", "On Compile Finished", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionPython_Compile->setText(QCoreApplication::translate("MainWindow", "Python Compile", nullptr));
+        actionupdateText->setText(QCoreApplication::translate("MainWindow", "updateText", nullptr));
+        actionCommit->setText(QCoreApplication::translate("MainWindow", "Commit", nullptr));
+        actionPush->setText(QCoreApplication::translate("MainWindow", "Push", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Message:", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuCompile->setTitle(QCoreApplication::translate("MainWindow", "Compile", nullptr));
+        menuG_thub->setTitle(QCoreApplication::translate("MainWindow", "Github", nullptr));
     } // retranslateUi
 
 };

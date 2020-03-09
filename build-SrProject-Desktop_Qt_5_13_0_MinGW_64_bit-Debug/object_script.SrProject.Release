@@ -1,11 +1,13 @@
 release/client.o
 release/connection.o
+release/login.o
 release/main.o
 release/mainwindow.o
 release/peermanager.o
 release/server.o
 release/moc_client.o
 release/moc_connection.o
+release/moc_login.o
 release/moc_mainwindow.o
 release/moc_peermanager.o
 release/moc_server.o

@@ -2,18 +2,14 @@
 
 
 
-
-
-
+sdfsdfsdfsdf
 std::string firstLetterEachWord(std::string string);
 
 
 int main()
 {
-    std::string str = "     alp kaan     devran   jjjjj kkkk         1"; 
+    std::string str = "     alp kd5an     hehvdgdfgeheh deddvaran   jjjjj kk         1"; 
     std::cout << firstLetterEachWord(str); 
-    return 0;
-
 
 }
 
