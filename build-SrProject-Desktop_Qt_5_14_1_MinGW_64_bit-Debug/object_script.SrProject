@@ -18,3 +18,4 @@ moc_mainwindow.o
 moc_peermanager.o
 moc_server.o
 moc_udpreceiver.o
+moc_udpsender.o

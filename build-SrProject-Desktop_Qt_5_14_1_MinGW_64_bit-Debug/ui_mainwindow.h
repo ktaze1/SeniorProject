@@ -42,9 +42,7 @@ public:
     QAction *actionPaste;
     QAction *actionUndo;
     QAction *actionCompile_Code;
-    QAction *actionOnCompileFinished;
     QAction *actionPython_Compile;
-    QAction *actionupdateText;
     QAction *actionCommit;
     QAction *actionPush;
     QWidget *centralWidget;
@@ -99,12 +97,8 @@ public:
         actionUndo->setObjectName(QString::fromUtf8("actionUndo"));
         actionCompile_Code = new QAction(MainWindow);
         actionCompile_Code->setObjectName(QString::fromUtf8("actionCompile_Code"));
-        actionOnCompileFinished = new QAction(MainWindow);
-        actionOnCompileFinished->setObjectName(QString::fromUtf8("actionOnCompileFinished"));
         actionPython_Compile = new QAction(MainWindow);
         actionPython_Compile->setObjectName(QString::fromUtf8("actionPython_Compile"));
-        actionupdateText = new QAction(MainWindow);
-        actionupdateText->setObjectName(QString::fromUtf8("actionupdateText"));
         actionCommit = new QAction(MainWindow);
         actionCommit->setObjectName(QString::fromUtf8("actionCommit"));
         actionPush = new QAction(MainWindow);
@@ -273,12 +267,7 @@ public:
         actionPaste->setText(QCoreApplication::translate("MainWindow", "Paste", nullptr));
         actionUndo->setText(QCoreApplication::translate("MainWindow", "Undo", nullptr));
         actionCompile_Code->setText(QCoreApplication::translate("MainWindow", "C++ Compile", nullptr));
-        actionOnCompileFinished->setText(QCoreApplication::translate("MainWindow", "OnCompileFinished", nullptr));
-#if QT_CONFIG(tooltip)
-        actionOnCompileFinished->setToolTip(QCoreApplication::translate("MainWindow", "On Compile Finished", nullptr));
-#endif // QT_CONFIG(tooltip)
         actionPython_Compile->setText(QCoreApplication::translate("MainWindow", "Python Compile", nullptr));
-        actionupdateText->setText(QCoreApplication::translate("MainWindow", "updateText", nullptr));
         actionCommit->setText(QCoreApplication::translate("MainWindow", "Commit", nullptr));
         actionPush->setText(QCoreApplication::translate("MainWindow", "Push", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Message:", nullptr));
