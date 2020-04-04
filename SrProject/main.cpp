@@ -49,8 +49,7 @@ int main(int argc, char *argv[])
 	}
 
 	Login login;
-	login.show();
-
+    login.show();
 	/*
 	MainWindow w;
 	w.setWindowTitle("Code Editor");

@@ -8,6 +8,8 @@
 #include <QtWidgets>
 #include <QTimer>
 #include <QApplication>
+#include "audiorecorder.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -289,5 +291,6 @@ void MainWindow::on_OpenCollabEditor_clicked()
 
 void MainWindow::on_CallButton_clicked()
 {
-    udpSender = new class udpSender();
+//
+
 }

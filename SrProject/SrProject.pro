@@ -23,6 +23,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++17
 
 SOURCES += \
+        audiolevel.cpp \
+        audiorecorder.cpp \
         client.cpp \
         collabeditor.cpp \
         connection.cpp \
@@ -36,6 +38,8 @@ SOURCES += \
         udpsender.cpp
 
 HEADERS += \
+        audiolevel.h \
+        audiorecorder.h \
         client.h \
         collabeditor.h \
         connection.h \
@@ -48,6 +52,7 @@ HEADERS += \
         udpsender.h
 
 FORMS += \
+        audiorecorder.ui \
         collabeditor.ui \
         login.ui \
         mainwindow.ui
