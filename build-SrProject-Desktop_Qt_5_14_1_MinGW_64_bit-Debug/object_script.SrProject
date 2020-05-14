@@ -8,6 +8,7 @@ login.o
 main.o
 mainwindow.o
 peermanager.o
+sendthread.o
 server.o
 udpreceiver.o
 udpsender.o

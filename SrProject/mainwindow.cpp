@@ -8,7 +8,6 @@
 #include <QtWidgets>
 #include <QTimer>
 #include <QApplication>
-#include "audiorecorder.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -44,6 +43,10 @@ MainWindow::MainWindow(QWidget *parent) :
 	myNickName = client.nickName();
 	newParticipant(myNickName);
     tableFormat.setBorder(0);
+
+  //  udpSender = new class udpSender();
+    qDebug() << "Test";
+    udpReceiver = new class udpReceiver();
 }
 
 
@@ -291,6 +294,9 @@ void MainWindow::on_OpenCollabEditor_clicked()
 
 void MainWindow::on_CallButton_clicked()
 {
-//
+    AudioRecorder = new class AudioRecorder();
+    AudioRecorder->show();
 
+    class udpSender c;
+    c.start("192.168.10.23",8888,"C:\\Users\\Kaan\\Desktop");
 }

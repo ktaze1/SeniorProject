@@ -23,7 +23,7 @@ Login::~Login()
 void Login::on_pushButton_clicked()
 {
 	if(ui->lineEdit->text() == "test" && ui->label_2->text() == "test"){
-		mainWindow = new MainWindow(this);
+        mainWindow = new class MainWindow(this);
 		mainWindow->show();
 	}
 }

@@ -1,4 +1,3 @@
-
 #include "audiolevel.h"
 #include <QPainter>
 

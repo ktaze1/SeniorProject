@@ -6,16 +6,13 @@
 #include <QDebug>
 
 
-udpReceiver::udpReceiver(QWidget *parent)
-    : QWidget(parent)
+udpReceiver::udpReceiver(QObject *parent)
+    : QTcpServer(parent)
 {
+    listen(QHostAddress::Any, 8888);
 
+    qDebug() << serverAddress() << serverPort() << serverError();
 
-    udpSocket = new QUdpSocket(this);
-    udpSocket->bind(44550, QUdpSocket::ShareAddress); //change port
-
-    connect(udpSocket, SIGNAL(readyRead()),
-            this, SLOT(processPendingDatagrams()));
 }
 
 
@@ -24,19 +21,12 @@ udpReceiver::~udpReceiver()
     delete udpSocket;
 }
 
-void udpReceiver::processPendingDatagrams()
+void udpReceiver::incomingConnection(int socketDescriptor)
 {
-    QByteArray datagram;
-//! [2]
-    while (udpSocket->hasPendingDatagrams()) {
-        datagram.resize(int(udpSocket->pendingDatagramSize()));
-        udpSocket->readDatagram(datagram.data(), datagram.size());
+        qDebug() << "File transfer started";
 
-        qDebug() << datagram.constData();
-
-        //Use Data
-//        statusLabel->setText(tr("Received datagram: \"%1\"")
-//                             .arg(datagram.constData()));
-    }
-//! [2]
+       SendThread *thread = new SendThread(socketDescriptor,this);
+       connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+       thread->start();
+       qDebug() << "Thread called";
 }

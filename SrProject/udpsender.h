@@ -2,8 +2,11 @@
 #define UDPSENDER_H
 
 
-#include <QTimer>
 
+#include <QObject>
+#include <QTcpSocket>
+#include <QHostAddress>
+#include <QFile>
 
 QT_BEGIN_NAMESPACE
 class QUdpSocket;
@@ -15,15 +18,18 @@ class udpSender : public QObject
     Q_OBJECT
 
 public:
-    udpSender();
+    explicit udpSender(QObject *parent = nullptr);
+    ~udpSender();
+    QTcpSocket *client;
+    void start(QString address, quint16 port, QString file);
+    QString filename;
 
 public slots:
-    void startBroadcasting();
-    void broadcastDatagram();
+    void ReadData();
+    void Completed();
 
 private:
     QUdpSocket *udpSocket = nullptr;
-    QTimer *timer;
 };
 
 #endif // UDPSENDER_H

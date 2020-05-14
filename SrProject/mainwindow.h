@@ -17,6 +17,7 @@
 
 #include "highlighter.h"
 
+#include "audiorecorder.h"
 #include "client.h"
 #include "udpreceiver.h"
 #include "udpsender.h"
@@ -90,6 +91,7 @@ private:
 	QString myNickName;
     QTextTableFormat tableFormat;
     CollabEditor *CollabEditor;
+    AudioRecorder *AudioRecorder;
     udpSender *udpSender;
     udpReceiver *udpReceiver;
     Client client;

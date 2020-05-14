@@ -30,7 +30,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayout;
     QPlainTextEdit *collabTextWidget;
-    QMenuBar *menubar;
+    QMenuBar *menubar1;
     QMenu *menuOpen_File;
     QStatusBar *statusbar;
 
@@ -56,17 +56,18 @@ public:
         horizontalLayout_2->addLayout(horizontalLayout);
 
         CollabEditor->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(CollabEditor);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 640, 22));
-        menuOpen_File = new QMenu(menubar);
+        menubar1 = new QMenuBar(CollabEditor);
+        menubar1->setObjectName(QString::fromUtf8("menubar1"));
+        menubar1->setGeometry(QRect(0, 0, 640, 21));
+        menuOpen_File = new QMenu(menubar1);
         menuOpen_File->setObjectName(QString::fromUtf8("menuOpen_File"));
-        CollabEditor->setMenuBar(menubar);
+        menuOpen_File->setEnabled(true);
+        CollabEditor->setMenuBar(menubar1);
         statusbar = new QStatusBar(CollabEditor);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         CollabEditor->setStatusBar(statusbar);
 
-        menubar->addAction(menuOpen_File->menuAction());
+        menubar1->addAction(menuOpen_File->menuAction());
         menuOpen_File->addAction(actionOpen);
 
         retranslateUi(CollabEditor);

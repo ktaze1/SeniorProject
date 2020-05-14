@@ -65,9 +65,10 @@ public:
     QMenu *menuEdit;
     QMenu *menuCompile;
     QMenu *menuG_thub;
-    QMenu *menuFile;
+    QMenu *menuDosya;
     QMenu *menu;
     QMenu *menu_2;
+    QMenu *menu_3;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -229,18 +230,21 @@ public:
         menuBar1->setDefaultUp(false);
         menuEdit = new QMenu(menuBar1);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
+        menuEdit->setEnabled(true);
         menuCompile = new QMenu(menuBar1);
         menuCompile->setObjectName(QString::fromUtf8("menuCompile"));
         menuG_thub = new QMenu(menuBar1);
         menuG_thub->setObjectName(QString::fromUtf8("menuG_thub"));
-        menuFile = new QMenu(menuBar1);
-        menuFile->setObjectName(QString::fromUtf8("menuFile"));
-        menuFile->setEnabled(true);
-        menuFile->setLayoutDirection(Qt::LeftToRight);
+        menuDosya = new QMenu(menuBar1);
+        menuDosya->setObjectName(QString::fromUtf8("menuDosya"));
+        menuDosya->setEnabled(true);
+        menuDosya->setLayoutDirection(Qt::LeftToRight);
         menu = new QMenu(menuBar1);
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menuBar1);
         menu_2->setObjectName(QString::fromUtf8("menu_2"));
+        menu_3 = new QMenu(menuBar1);
+        menu_3->setObjectName(QString::fromUtf8("menu_3"));
         MainWindow->setMenuBar(menuBar1);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -249,7 +253,8 @@ public:
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
-        menuBar1->addAction(menuFile->menuAction());
+        menuBar1->addAction(menu_3->menuAction());
+        menuBar1->addAction(menuDosya->menuAction());
         menuBar1->addAction(menuEdit->menuAction());
         menuBar1->addAction(menuCompile->menuAction());
         menuBar1->addAction(menuG_thub->menuAction());
@@ -262,12 +267,12 @@ public:
         menuCompile->addAction(actionPython_Compile);
         menuG_thub->addAction(actionCommit);
         menuG_thub->addAction(actionPush);
-        menuFile->addAction(actionNew_File);
-        menuFile->addAction(actionOpen);
-        menuFile->addAction(actionSave);
-        menuFile->addAction(actionSave_As);
-        menuFile->addSeparator();
-        menuFile->addAction(actionExit);
+        menuDosya->addAction(actionOpen);
+        menuDosya->addAction(actionNew_File);
+        menuDosya->addAction(actionSave);
+        menuDosya->addAction(actionExit);
+        menuDosya->addAction(actionSave_As);
+        menuDosya->addSeparator();
         menu->addAction(action);
 
         retranslateUi(MainWindow);
@@ -297,9 +302,10 @@ public:
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuCompile->setTitle(QCoreApplication::translate("MainWindow", "Compile", nullptr));
         menuG_thub->setTitle(QCoreApplication::translate("MainWindow", "Github", nullptr));
-        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        menuDosya->setTitle(QCoreApplication::translate("MainWindow", "Dosya", nullptr));
         menu->setTitle(QString());
         menu_2->setTitle(QString());
+        menu_3->setTitle(QString());
     } // retranslateUi
 
 };

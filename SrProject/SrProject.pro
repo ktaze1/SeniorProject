@@ -33,6 +33,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         peermanager.cpp \
+        sendthread.cpp \
         server.cpp \
         udpreceiver.cpp \
         udpsender.cpp
@@ -47,6 +48,7 @@ HEADERS += \
         login.h \
         mainwindow.h \
         peermanager.h \
+        sendthread.h \
         server.h \
         udpreceiver.h \
         udpsender.h

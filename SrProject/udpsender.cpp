@@ -4,26 +4,45 @@
 #include <QtCore>
 #include <QTimer>
 
-udpSender::udpSender() : QObject()
+udpSender::udpSender(QObject *parent) : QObject(parent)
 {
 
-    udpSocket = new QUdpSocket();
-    timer = new QTimer();
-
-    startBroadcasting();
-    connect(timer, SIGNAL(timeout()), this, SLOT(broadcastDatagram()));
-    timer->start(15);
+    client = new QTcpSocket(this);
+    client->abort();
+    connect(client, SIGNAL(readyRead()), this, SLOT(ReadData()));
+    connect(client, SIGNAL(disconnected()), this, SLOT(Completed()));
 
 }
 
-void udpSender::startBroadcasting()
+udpSender::~udpSender()
 {
-    timer->start(1000);
+    client->close();
 }
 
-void udpSender::broadcastDatagram()
+void udpSender::start(QString address, quint16 port, QString file)
 {
-    //int port = MainWindow::recepientPort;
-    //QByteArray datagram = QByteArray("1", 44550);
-    udpSocket->writeDatagram("1", 1, QHostAddress::Broadcast, 44550);
+        QHostAddress addr(address);
+        filename = file;
+        client->connectToHost(addr, port);
+        qDebug() << client->socketDescriptor();
+}
+
+void udpSender::Completed()
+{
+    qDebug() << "File transfer complete";
+}
+
+
+void udpSender::ReadData()
+{
+    QFile file(filename);
+    if(!(file.open(QIODevice::Append)))
+    {
+        qDebug("File cannot be opened.");
+        exit(0);
+    }
+    QByteArray read = client->read(client->bytesAvailable());
+    qDebug() << "Read    : " << read.size();
+    file.write(read);
+    file.close();
 }

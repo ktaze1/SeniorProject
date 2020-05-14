@@ -208,6 +208,9 @@
     <bool>false</bool>
    </property>
    <widget class="QMenu" name="menuEdit">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>Edit</string>
     </property>
@@ -229,7 +232,7 @@
     <addaction name="actionCommit"/>
     <addaction name="actionPush"/>
    </widget>
-   <widget class="QMenu" name="menuFile">
+   <widget class="QMenu" name="menuDosya">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -237,27 +240,33 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="title">
-     <string>File</string>
+     <string>Dosya</string>
     </property>
-    <addaction name="actionNew_File"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionNew_File"/>
     <addaction name="actionSave"/>
+    <addaction name="actionExit"/>
     <addaction name="actionSave_As"/>
     <addaction name="separator"/>
-    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string> </string>
+     <string/>
     </property>
     <addaction name="action"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
      <string> </string>
     </property>
    </widget>
-   <addaction name="menuFile"/>
+   <addaction name="menu_3"/>
+   <addaction name="menuDosya"/>
    <addaction name="menuEdit"/>
    <addaction name="menuCompile"/>
    <addaction name="menuG_thub"/>
@@ -335,7 +344,7 @@
   </action>
   <action name="action">
    <property name="text">
-    <string> </string>
+    <string/>
    </property>
   </action>
  </widget>
