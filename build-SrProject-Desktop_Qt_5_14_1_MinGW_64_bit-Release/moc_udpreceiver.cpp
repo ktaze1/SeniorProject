@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_udpReceiver_t {
-    QByteArrayData data[3];
-    char stringdata0[37];
+    QByteArrayData data[4];
+    char stringdata0[50];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,12 +33,13 @@ struct qt_meta_stringdata_udpReceiver_t {
 static const qt_meta_stringdata_udpReceiver_t qt_meta_stringdata_udpReceiver = {
     {
 QT_MOC_LITERAL(0, 0, 11), // "udpReceiver"
-QT_MOC_LITERAL(1, 12, 23), // "processPendingDatagrams"
-QT_MOC_LITERAL(2, 36, 0) // ""
+QT_MOC_LITERAL(1, 12, 19), // "incomingConnectionn"
+QT_MOC_LITERAL(2, 32, 0), // ""
+QT_MOC_LITERAL(3, 33, 16) // "socketDescriptor"
 
     },
-    "udpReceiver\0processPendingDatagrams\0"
-    ""
+    "udpReceiver\0incomingConnectionn\0\0"
+    "socketDescriptor"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,10 +57,10 @@ static const uint qt_meta_data_udpReceiver[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   19,    2, 0x08 /* Private */,
+       1,    1,   19,    2, 0x09 /* Protected */,
 
  // slots: parameters
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    3,
 
        0        // eod
 };
@@ -70,15 +71,14 @@ void udpReceiver::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         auto *_t = static_cast<udpReceiver *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->processPendingDatagrams(); break;
+        case 0: _t->incomingConnectionn((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject udpReceiver::staticMetaObject = { {
-    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    QMetaObject::SuperData::link<QTcpServer::staticMetaObject>(),
     qt_meta_stringdata_udpReceiver.data,
     qt_meta_data_udpReceiver,
     qt_static_metacall,
@@ -97,12 +97,12 @@ void *udpReceiver::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_udpReceiver.stringdata0))
         return static_cast<void*>(this);
-    return QWidget::qt_metacast(_clname);
+    return QTcpServer::qt_metacast(_clname);
 }
 
 int udpReceiver::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QTcpServer::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

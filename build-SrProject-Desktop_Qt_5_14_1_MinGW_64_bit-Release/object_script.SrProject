@@ -1,3 +1,5 @@
+audiolevel.o
+audiorecorder.o
 client.o
 collabeditor.o
 connection.o
@@ -6,9 +8,12 @@ login.o
 main.o
 mainwindow.o
 peermanager.o
+sendthread.o
 server.o
 udpreceiver.o
 udpsender.o
+moc_audiolevel.o
+moc_audiorecorder.o
 moc_client.o
 moc_collabeditor.o
 moc_connection.o

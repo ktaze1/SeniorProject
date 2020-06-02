@@ -45,6 +45,7 @@ public:
     QAction *actionPython_Compile;
     QAction *actionCommit;
     QAction *actionPush;
+    QAction *action;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QGridLayout *gridLayout;
@@ -60,11 +61,14 @@ public:
     QPushButton *OpenCollabEditor;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *CallButton;
-    QMenuBar *menuBar;
-    QMenu *menuFile;
+    QMenuBar *menuBar1;
     QMenu *menuEdit;
     QMenu *menuCompile;
     QMenu *menuG_thub;
+    QMenu *menuDosya;
+    QMenu *menu;
+    QMenu *menu_2;
+    QMenu *menu_3;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -103,6 +107,8 @@ public:
         actionCommit->setObjectName(QString::fromUtf8("actionCommit"));
         actionPush = new QAction(MainWindow);
         actionPush->setObjectName(QString::fromUtf8("actionPush"));
+        action = new QAction(MainWindow);
+        action->setObjectName(QString::fromUtf8("action"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
@@ -213,18 +219,33 @@ public:
         horizontalLayout->addLayout(gridLayout);
 
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1580, 22));
-        menuFile = new QMenu(menuBar);
-        menuFile->setObjectName(QString::fromUtf8("menuFile"));
-        menuEdit = new QMenu(menuBar);
+        menuBar1 = new QMenuBar(MainWindow);
+        menuBar1->setObjectName(QString::fromUtf8("menuBar1"));
+        menuBar1->setGeometry(QRect(0, 0, 1580, 21));
+        QSizePolicy sizePolicy6(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(menuBar1->sizePolicy().hasHeightForWidth());
+        menuBar1->setSizePolicy(sizePolicy6);
+        menuBar1->setDefaultUp(false);
+        menuEdit = new QMenu(menuBar1);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
-        menuCompile = new QMenu(menuBar);
+        menuEdit->setEnabled(true);
+        menuCompile = new QMenu(menuBar1);
         menuCompile->setObjectName(QString::fromUtf8("menuCompile"));
-        menuG_thub = new QMenu(menuBar);
+        menuG_thub = new QMenu(menuBar1);
         menuG_thub->setObjectName(QString::fromUtf8("menuG_thub"));
-        MainWindow->setMenuBar(menuBar);
+        menuDosya = new QMenu(menuBar1);
+        menuDosya->setObjectName(QString::fromUtf8("menuDosya"));
+        menuDosya->setEnabled(true);
+        menuDosya->setLayoutDirection(Qt::LeftToRight);
+        menu = new QMenu(menuBar1);
+        menu->setObjectName(QString::fromUtf8("menu"));
+        menu_2 = new QMenu(menuBar1);
+        menu_2->setObjectName(QString::fromUtf8("menu_2"));
+        menu_3 = new QMenu(menuBar1);
+        menu_3->setObjectName(QString::fromUtf8("menu_3"));
+        MainWindow->setMenuBar(menuBar1);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
@@ -232,16 +253,13 @@ public:
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
-        menuBar->addAction(menuFile->menuAction());
-        menuBar->addAction(menuEdit->menuAction());
-        menuBar->addAction(menuCompile->menuAction());
-        menuBar->addAction(menuG_thub->menuAction());
-        menuFile->addAction(actionNew_File);
-        menuFile->addAction(actionOpen);
-        menuFile->addAction(actionSave);
-        menuFile->addAction(actionSave_As);
-        menuFile->addSeparator();
-        menuFile->addAction(actionExit);
+        menuBar1->addAction(menu_3->menuAction());
+        menuBar1->addAction(menuDosya->menuAction());
+        menuBar1->addAction(menuEdit->menuAction());
+        menuBar1->addAction(menuCompile->menuAction());
+        menuBar1->addAction(menuG_thub->menuAction());
+        menuBar1->addAction(menu->menuAction());
+        menuBar1->addAction(menu_2->menuAction());
         menuEdit->addAction(actionCopy);
         menuEdit->addAction(actionPaste);
         menuEdit->addAction(actionUndo);
@@ -249,6 +267,13 @@ public:
         menuCompile->addAction(actionPython_Compile);
         menuG_thub->addAction(actionCommit);
         menuG_thub->addAction(actionPush);
+        menuDosya->addAction(actionOpen);
+        menuDosya->addAction(actionNew_File);
+        menuDosya->addAction(actionSave);
+        menuDosya->addAction(actionExit);
+        menuDosya->addAction(actionSave_As);
+        menuDosya->addSeparator();
+        menu->addAction(action);
 
         retranslateUi(MainWindow);
 
@@ -270,13 +295,17 @@ public:
         actionPython_Compile->setText(QCoreApplication::translate("MainWindow", "Python Compile", nullptr));
         actionCommit->setText(QCoreApplication::translate("MainWindow", "Commit", nullptr));
         actionPush->setText(QCoreApplication::translate("MainWindow", "Push", nullptr));
+        action->setText(QString());
         label->setText(QCoreApplication::translate("MainWindow", "Message:", nullptr));
         OpenCollabEditor->setText(QCoreApplication::translate("MainWindow", "Select User to Open Collab Edit", nullptr));
         CallButton->setText(QCoreApplication::translate("MainWindow", "Select User to Call", nullptr));
-        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuCompile->setTitle(QCoreApplication::translate("MainWindow", "Compile", nullptr));
         menuG_thub->setTitle(QCoreApplication::translate("MainWindow", "Github", nullptr));
+        menuDosya->setTitle(QCoreApplication::translate("MainWindow", "Dosya", nullptr));
+        menu->setTitle(QString());
+        menu_2->setTitle(QString());
+        menu_3->setTitle(QString());
     } // retranslateUi
 
 };

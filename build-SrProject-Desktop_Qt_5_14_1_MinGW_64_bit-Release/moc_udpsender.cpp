@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_udpSender_t {
     QByteArrayData data[4];
-    char stringdata0[47];
+    char stringdata0[30];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,13 +33,12 @@ struct qt_meta_stringdata_udpSender_t {
 static const qt_meta_stringdata_udpSender_t qt_meta_stringdata_udpSender = {
     {
 QT_MOC_LITERAL(0, 0, 9), // "udpSender"
-QT_MOC_LITERAL(1, 10, 17), // "startBroadcasting"
-QT_MOC_LITERAL(2, 28, 0), // ""
-QT_MOC_LITERAL(3, 29, 17) // "broadcastDatagram"
+QT_MOC_LITERAL(1, 10, 8), // "ReadData"
+QT_MOC_LITERAL(2, 19, 0), // ""
+QT_MOC_LITERAL(3, 20, 9) // "Completed"
 
     },
-    "udpSender\0startBroadcasting\0\0"
-    "broadcastDatagram"
+    "udpSender\0ReadData\0\0Completed"
 };
 #undef QT_MOC_LITERAL
 
@@ -73,8 +72,8 @@ void udpSender::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         auto *_t = static_cast<udpSender *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->startBroadcasting(); break;
-        case 1: _t->broadcastDatagram(); break;
+        case 0: _t->ReadData(); break;
+        case 1: _t->Completed(); break;
         default: ;
         }
     }
